@@ -59,8 +59,10 @@ describe CodeCache::Repo::SVN do
       result = repo.checkout( :head, destination_2 )
       t3 = Time.now
       
+      puts "***************************"
       puts "First :  #{t2 - t1}"
       puts "Second:  #{t3 - t2}"
+      puts "***************************"
       
       expect( t3 - t2 ).to be < t2 - t1
       
@@ -90,7 +92,6 @@ describe CodeCache::Repo::SVN do
       repo = CodeCache::Repo::SVN.new( SVN_URL, :cache => '/tmp/cache' )
       expect(repo.location_in_cache(:head)).to eq '/tmp/cache/svn/github.com/bbc-test/code_cache/trunk/head'
     end
-  
     
   end
   

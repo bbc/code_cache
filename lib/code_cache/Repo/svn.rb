@@ -22,9 +22,6 @@ module CodeCache
         perform_cache_checkout_or_update(cache_destination)
         FileUtils.mkdir_p(destination)
         
-        puts "Cache: #{cache_destination}"
-        puts "Destination #{destination}"
-        
         FileUtils.cp_r(cache_destination+'/.', destination)
         # Ensure the final copy is consistent
         raise CopyError if !Dir.exist?(destination)
@@ -72,7 +69,7 @@ module CodeCache
 
     # Perform an svn update on a directory -- checks its a valid svn dir first
     def perform_update(destination)
-      output = `svn info #{destination} && svn up #{destination} 2>&1`
+      output = `svn info #{destination} 2>&1 && svn up #{destination} 2>&1`
       status = $? == 0
       { :output => output, :status => status }
     end
