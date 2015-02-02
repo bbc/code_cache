@@ -44,7 +44,7 @@ module CodeCache
   class CacheCalculationError < StandardError
   end
   
-  class CacheCorrupionError < StandardError
+  class CacheCorruptionError < StandardError
   end
   
   class UpdateError < StandardError
