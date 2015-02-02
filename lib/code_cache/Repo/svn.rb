@@ -5,10 +5,10 @@ module CodeCache
   
     def initialize(url, options = {})
       super(url, options)
-      
-      check_repo(url)
     end
     
+    # Checkout a particular revision from the repo into the destination
+    # Caches the checkout in the process
     def checkout( revision, destination )
       
       if revision != :head
@@ -88,27 +88,12 @@ module CodeCache
       end
     end
    
-    
-    # Calculates the location of a cached checkout
-    def location_in_cache( revision )
-      File.join( cache, 'svn', split_url, revision.to_s )
-    end
-    
+    # Split the url into a unique array for the cache path
     def split_url
       url.split('//').drop(1).collect{ |e| e.split('/') }.flatten
     end
   end
   
-  class UnknownCheckoutError < StandardError
-  end
-  
-  class CacheCorrupionError < StandardError
-  end
-  
-  class UpdateError < StandardError
-  end
-  
-  class CopyError < StandardError
-  end
+
   
 end
