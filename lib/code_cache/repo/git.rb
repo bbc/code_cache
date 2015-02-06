@@ -52,7 +52,7 @@ module CodeCache
     end
     
     def update_cache(cache_destination)
-      output = `GIT_DIR=#{cache_destination} git fetch 2>&1`
+      output = `GIT_DIR=#{cache_destination} git fetch origin +refs/heads/*:refs/heads/* 2>&1`
       status = $? == 0
       { :output => output, :status => status }
     end
