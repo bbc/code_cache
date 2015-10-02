@@ -4,7 +4,7 @@ require 'code_cache/repo/svn'
 module CodeCache
 
   def self.identify(url)
-    if (url =~ /.*\.git$/)
+    if (url =~ /.*\.git\s*$/)
       :git
     else
       :svn
