@@ -1,7 +1,7 @@
 require 'code_cache/repo'
 require 'code_cache/repo/svn'
 
-SVN_URL = 'https://github.com/bbc-test/code_cache/trunk'
+SVN_URL = 'https://github.com/bbc/code_cache/trunk'
 
 CACHE_BASE = '/tmp/code_cache_tests_'
 
@@ -34,7 +34,7 @@ describe CodeCache::Repo::SVN do
       
       expect( result ).to eq true
       
-      cached_checkout = cache + '/svn/github.com/bbc-test/code_cache/trunk/head'
+      cached_checkout = cache + '/svn/github.com/bbc/code_cache/trunk/head'
       
       expect( Dir.exist?(cached_checkout) ).to eq true
       expect( File.exist?(cached_checkout + '/README.md') ).to be true
@@ -90,7 +90,7 @@ describe CodeCache::Repo::SVN do
     
     it 'calculates the location of a checkout in the cache' do
       repo = CodeCache::Repo::SVN.new( SVN_URL, :cache => '/tmp/cache' )
-      expect(repo.location_in_cache(:head)).to eq '/tmp/cache/svn/github.com/bbc-test/code_cache/trunk/head'
+      expect(repo.location_in_cache(:head)).to eq '/tmp/cache/svn/github.com/bbc/code_cache/trunk/head'
     end
     
   end

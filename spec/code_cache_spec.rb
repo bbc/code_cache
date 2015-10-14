@@ -4,9 +4,9 @@ require 'code_cache'
 require 'code_cache/repo/git'
 require 'code_cache/repo/svn'
 
-GITHUB_SSH_URL = 'git@github.com:bbc-test/code_cache.git'
-GITHUB_HTTPS_URL = 'https://github.com/bbc-test/code_cache.git'
-GITHUB_SVN_URL = 'https://github.com/bbc-test/code_cache'
+GITHUB_SSH_URL = 'git@github.com:bbc/code_cache.git'
+GITHUB_HTTPS_URL = 'https://github.com/bbc/code_cache.git'
+GITHUB_SVN_URL = 'https://github.com/bbc/code_cache'
 
 describe CodeCache do
 

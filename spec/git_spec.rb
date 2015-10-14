@@ -1,8 +1,8 @@
 require 'code_cache/repo'
 require 'code_cache/repo/git'
 
-GIT_URL = 'git@github.com:bbc-test/code_cache.git'
-HTTPS_URL = 'https://github.com/bbc-test/code_cache.git'
+GIT_URL = 'git@github.com:bbc/code_cache.git'
+HTTPS_URL = 'https://github.com/bbc/code_cache.git'
 
 CACHE_BASE = '/tmp/code_cache_tests_'
 
@@ -52,7 +52,7 @@ describe CodeCache::Repo::Git do
       
       expect( result ).to eq true
       
-      cached_clone = cache + '/git/github.com/bbc-test/code_cache/'
+      cached_clone = cache + '/git/github.com/bbc/code_cache/'
       
       expect( Dir.exist?(cached_clone) ).to eq true
       expect( Dir.exist?(cached_clone + '/refs') ).to be true
@@ -108,12 +108,12 @@ describe CodeCache::Repo::Git do
     
     it 'calculates the location of a checkout in the cache from an ssh url' do
       repo = CodeCache::Repo::Git.new( GIT_URL, :cache => '/tmp/cache' )
-      expect(repo.location_in_cache(:head)).to eq '/tmp/cache/git/github.com/bbc-test/code_cache/head'
+      expect(repo.location_in_cache(:head)).to eq '/tmp/cache/git/github.com/bbc/code_cache/head'
     end
     
     it 'calculates the location of a checkout in the cache from an https url' do
       repo = CodeCache::Repo::Git.new( HTTPS_URL, :cache => '/tmp/cache' )
-      expect(repo.location_in_cache(:head)).to eq '/tmp/cache/git/github.com/bbc-test/code_cache/head'
+      expect(repo.location_in_cache(:head)).to eq '/tmp/cache/git/github.com/bbc/code_cache/head'
     end
     
   end
