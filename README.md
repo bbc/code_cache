@@ -17,3 +17,8 @@ Tests run against the github svn and git endpoints for this repository. Just run
     bundle
     bundle exec rspec
     
+## License
+
+Code Cache is available to everyone under the terms of the MIT open source licence. Take a look at the LICENSE file in the code.
+
+Copyright (c) 2015 BBC
