@@ -1,4 +1,6 @@
 require 'fileutils'
+require 'rbconfig'
+require 'tmpdir'
 
 module CodeCache
 
@@ -7,7 +9,8 @@ module CodeCache
     attr_accessor :url, :cache
     
     def initialize(url, options = {})
-      @cache = options[:cache] || '/tmp/code_cache'
+      cache_dir = Dir.tmpdir() if RbConfig::CONFIG['host_os'].include? "ming" 
+      @cache = options[:cache] || cache_dir || '/tmp/code_cache'
       @url = url
       
       check_repo(url)
