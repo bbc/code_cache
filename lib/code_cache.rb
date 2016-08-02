@@ -11,11 +11,11 @@ module CodeCache
     end
   end
   
-  def self.repo(url)
+  def self.repo(url, options = {})
     if self.identify(url) == :git
-      Repo::Git.new(url)
+      Repo::Git.new(url, options)
     else
-      Repo::SVN.new(url)
+      Repo::SVN.new(url, options)
     end
   end
 
