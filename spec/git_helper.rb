@@ -1,3 +1,5 @@
+require 'mixlib/shellout'
+
 module GitHelpers
   def remote_git_repo(name, options = {})
     pwd = `pwd`.strip
