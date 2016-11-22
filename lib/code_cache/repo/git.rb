@@ -10,7 +10,7 @@ module CodeCache
     # Split the url into a unique array for the cache path
     def split_url
       match = /(?:(?:git|ssh)@(.*):|(?:https?:\/\/(.*?)\/))(.*).git/.match(url)
-      match.captures.compact
+      match.captures.compact if match
     end
 
     # Check access to the repo in question
@@ -23,11 +23,10 @@ module CodeCache
     
     # Checkout a particular revision from the repo into the destination
     # Caches the checkout in the process
-    def checkout( revision, destination )
+    def checkout( revision, destination , branch=nil)
       
-      if revision != :head
-        raise "Checking out anything other than the head of the default branch not supported"
-      end
+      raise "Checking out anything other than the head of the default branch not supported" if revision != :head
+      raise "Not checking out as destination directory has another git repository" if !Dir["#{destination}/.git"].empty? 
       
       cache_destination = location_in_cache()
       
@@ -36,9 +35,8 @@ module CodeCache
       
       puts "Cache: #{cache_destination}"
       puts "Destination: #{destination}"
-      
-      checkout_from_cache_to_destination(cache_destination, destination, revision)
-      
+      output = checkout_from_cache_to_destination(cache_destination, destination, revision, branch)
+
       true
     end
     
@@ -63,9 +61,16 @@ module CodeCache
       { :output => output, :status => status }
     end
     
-    def checkout_from_cache_to_destination(cache_destination, destination, revision)
-      output = `git clone --single-branch #{cache_destination} #{destination} 2>&1`
+    def checkout_from_cache_to_destination(cache_destination, destination, revision, branch)
+      if branch
+        output = `git clone --single-branch #{cache_destination} #{destination} -b #{branch} 2>&1`
+      else
+        output = `git clone --single-branch #{cache_destination} #{destination} 2>&1`
+      end
       status = $? == 0
+
+      raise output if output.include? 'Could not find remote branch'
+
       { :output => output, :status => status }
     end
     
