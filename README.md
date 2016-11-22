@@ -5,7 +5,8 @@ Version control checkout abstraction and cache.
 
     repo =  CodeCache.repo( repo_url )
     begin
-      repo.checkout( :head, 'path/to/checkout' )
+      repo.checkout( :head, 'path/to/checkout' )  # checkout master
+      repo.checkout( :head, 'path/to/checkout', 'branch_name' )  # checkout specific branch
     rescue => e
       puts "Checkout failed"
     end
