@@ -75,6 +75,13 @@ describe CodeCache::Repo::Git do
     
     end
 
+    it 'raises exception when branch not found' do
+      cache = CACHE_BASE+rand(999999).to_s
+      repo = CodeCache::Repo::Git.new( bare_repo, :cache => cache)
+      destination = "/tmp/checkouts/#{rand(999999)}/code_cache"
+      expect{repo.checkout(:head, destination, 'test1')}.to raise_error(CodeCache::BranchNotFound)
+    end
+
     it 'checks out the same repo twice using the cache' do
 
       cache = CACHE_BASE+rand(999999).to_s

@@ -5,9 +5,9 @@ require 'tmpdir'
 module CodeCache
 
   class Repo
-    
+
     attr_accessor :url, :cache
-    
+
     def initialize(url, options = {})
       cache_dir = Dir.tmpdir() if RbConfig::CONFIG['host_os'].include? "ming" 
       @cache = options[:cache] || cache_dir || '/tmp/code_cache'
@@ -54,6 +54,9 @@ module CodeCache
   end
   
   class CopyError < StandardError
+  end
+ 
+  class BranchNotFound < StandardError
   end
 
 end
