@@ -26,7 +26,7 @@ module CodeCache
     def checkout( revision, destination , branch=nil)
       
       raise "Checking out anything other than the head of the default branch not supported" if revision != :head
-      raise "Not checking out, as destination directory has another git repository" if !Dir["#{destination}/.git"].empty?
+      raise "Not checking out, as #{destination} directory has another git repository" if !Dir["#{destination}/.git"].empty?
       
       cache_destination = location_in_cache()
       
