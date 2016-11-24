@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'code_cache'
-  s.version     = '0.2.2'
+  s.version     = '0.2.3'
   s.date        = Time.now.strftime("%Y-%m-%d")
   s.licenses    = ['MIT']
   s.summary     = "Abstracts & caches svn & git operations"
