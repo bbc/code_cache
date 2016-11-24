@@ -62,7 +62,7 @@ module CodeCache
     end
     
     def checkout_from_cache_to_destination(cache_destination, destination, revision, branch)
-      if branch
+      if branch && branch != ""
         output = `git clone --single-branch #{cache_destination} #{destination} -b #{branch} 2>&1`
       else
         output = `git clone --single-branch #{cache_destination} #{destination} 2>&1`
