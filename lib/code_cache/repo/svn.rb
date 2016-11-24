@@ -9,7 +9,9 @@ module CodeCache
     
     # Checkout a particular revision from the repo into the destination
     # Caches the checkout in the process
-    def checkout( revision, destination )
+    def checkout( revision, destination, branch=nil )
+     
+      puts "Checking out branch in not supported for SVN" if branch
       
       if revision != :head
         raise "Checking out revisions other than head currently not supported"
